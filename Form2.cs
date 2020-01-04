@@ -28,11 +28,28 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //register new account
-            Account newAccount = new Account(usernameInput.Text, passwordInput.Text);
-            loginForm.acc.AddAccount(newAccount);
-            MessageBox.Show("New account created. \nPlease log in with your new credentials.");
-            CloseThisForm();
+            //validate account details
+            if (usernameInput.Text.Equals("") || passwordInput.Text.Equals(""))
+            {
+                MessageBox.Show("Username and password cannot be empty. Please try again.");
+            }
+            else
+            {
+                //check for existing username
+                if (loginForm.acc.FindUserAccount(usernameInput.Text) != null)
+                {
+                    MessageBox.Show("Username already exists. Please try again.");
+                }
+                else
+                {
+                    //register new account
+                    Account newAccount = new Account(usernameInput.Text, passwordInput.Text);
+                    loginForm.acc.AddAccount(newAccount);
+                    MessageBox.Show("New account created. \nPlease log in with your new credentials.");
+                    CloseThisForm();
+                }
+            }
+            
         }
 
         private void CloseThisForm()

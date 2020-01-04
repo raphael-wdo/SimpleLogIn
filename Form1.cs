@@ -46,7 +46,6 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Form2 f2 = new Form2(this); //this is the change, code for redirect  
             f2.Show();
         }
